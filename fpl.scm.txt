@@ -1,8 +1,14 @@
 ;guile 2.0.11
 
+(define (append_func lis1 lis2)
+  (cond
+   ((null? lis1) lis2)
+   (else (cons (car lis1)
+
 (define(reverse-general L)
   (cond
    (not (list? L)#f)
    ((null? L) L)
    ((
-   (else (reverse-general(cdr(L))))
+   (else (reverse-general(cdr(L)))) 
+   
