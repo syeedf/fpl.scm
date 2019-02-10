@@ -15,12 +15,11 @@
         )
   )
                
-(define (sum-up-numbers-simple L)
-  (cond ((null? L) 0)
-        ((number? (car L)) 
+(define (sum-up-numbers-simple L) ; define func
+  (cond ((null? L) 0)   ; return 0 if list empty
+        ((number? (car L))  ;check if number then add
          (+ (car L) (sum-up-numbers-simple (cdr L))))
-        (else (+ 0 (sum-up-numbers-simple (cdr L))))
+        (else (+ 0 (sum-up-numbers-simple (cdr L)))) ;check if number then add 0 if not number
   )
 )
-   
          
