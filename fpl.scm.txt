@@ -1,0 +1,8 @@
+;guile 2.0.11
+
+(define(reverse-general L)
+  (cond
+   (not (list? L)#f)
+   ((null? L) L)
+   ((
+   (else (reverse-general(cdr(L))))
