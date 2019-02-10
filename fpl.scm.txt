@@ -1,18 +1,18 @@
 ;guile 2.0.11
 
-(define (append lis1 lis2)
-  (cond
-   ((null? lis1) lis2)
-   (else (cons (car lis1)
-    (append (cdr lis1) lis2)))
-  )
-)
+(define (append list1 list2) ;define append
+        (if (null? list1) list2
+            (cons (car list1) (append (cdr list1) list2))))
                
-
-(define(reverse-general L)
-  (cond
-   ((null? L) L)
-   (append(reverse-general(cdr(L)) (list(car(L)))))
-   )
+(define (reverse-general L) 
+  (cond ((null? L) '()) ;check for empty list
+        ((list? L) ;if its a list
+         (append (reverse-general (cdr L)) ;append if true and apply the reverse on all subsequent elementd
+                 (list (reverse-general (car L))) 
+                 ) 
+         ) 
+        (else L) ;else return 
+        )
   )
-  
+               
+         
