@@ -22,4 +22,14 @@
         (else (+ 0 (sum-up-numbers-simple (cdr L)))) ;check if number then add 0 if not number
   )
 )
-         
+
+(define(sum-up-numbers-general L)
+  (cond ((null? L) 0)   ; return 0 if list empty
+        ((list? (car L))
+         (+ (sum-up-numbers-general(car L)) (sum-up-numbers-general(cdr L))))
+        ((number? (car L))  ;check if number then add
+         (+ (car L) (sum-up-numbers-general (cdr L))))
+        (else (+ 0 (sum-up-numbers-general (cdr L)))) ;check if number then add 0 if not number
+  )
+)
+  
