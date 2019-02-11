@@ -32,4 +32,15 @@
         (else (+ 0 (sum-up-numbers-general (cdr L)))) ;check if number then add 0 if not number
   )
 )
-  
+
+(define (minim lst)
+    (cond ((null? (cdr lst)) (car lst))
+          ((< (car lst) (minim (cdr lst))) (car lst))
+          (else (minim (cdr lst)))) )
+
+
+(define (min-above-min L1 L2)
+  (cond
+   ((null? L1) #f)
+   ((null? L2) minim L2)
+   ((< minim L1 > minim L2)
