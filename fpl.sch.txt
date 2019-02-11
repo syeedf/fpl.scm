@@ -1,0 +1,43 @@
+;guile 2.0.11
+
+(define (append list1 list2) ;define append
+        (if (null? list1) list2
+            (cons (car list1) (append (cdr list1) list2))))
+(define (reverse-general L) 
+  (cond ((null? L) '()) ;check for empty list
+        ((list? L) ;if its a list
+         (append (reverse-general (cdr L)) ;append if true and apply the reverse on all subsequent elementd
+                 (list (reverse-general (car L))))) 
+        (else L))) ;else return                
+(define (sum-up-numbers-simple L) ; define func
+  (cond ((null? L) 0)   ; return 0 if list empty
+        ((number? (car L))  ;check if number then add
+         (+ (car L) (sum-up-numbers-simple (cdr L))))
+        (else (+ 0 (sum-up-numbers-simple (cdr L)))))) ;check if number then add 0 if not number
+(define(sum-up-numbers-general L)
+  (cond ((null? L) 0)   ; return 0 if list empty
+        ((list? (car L))
+         (+ (sum-up-numbers-general(car L)) (sum-up-numbers-general(cdr L))))
+        ((number? (car L))  ;check if number then add
+         (+ (car L) (sum-up-numbers-general (cdr L))))
+        (else (+ 0 (sum-up-numbers-general (cdr L)))) ;check if number then add 0 if not number
+  )
+)
+
+(define (minim lst)
+    (cond ((null? (cdr lst)) (car lst))
+          ((not (number?(car lst)))  (minim(cdr lst)))
+          ((< (car lst) (minim (cdr lst))) (car lst))
+          (else (minim (cdr lst)))) )
+
+
+(define (min-above-min L1 L2)
+  (cond
+   ((null? L1) #f) ;check if null return false
+   ((null? L2) (minim L1)) ; check list 2 for null if true return minimum
+   ((< (minim L2) (minim L1)) (minim L1))
+   (else
+    (if (> (car L1) (minim L2)) minim(append (car L1) (min-above-min(cdr L2)))); this is unfinished and most likely will break couldnt figure out how to deal with the strigns properly and deal with returning the mminimum number greater than the minimum in list2
+    )
+   )
+  )
